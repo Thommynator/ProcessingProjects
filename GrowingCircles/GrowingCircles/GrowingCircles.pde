@@ -1,7 +1,11 @@
 ArrayList<Circle> circles;
-int nTotal = 20;
-int limit = 500;
-int scl=10;
+// this number describes, how many circles are generated and added to the list in the same interation
+int nTotal = 30;
+// the algorithm tries to find an empty spot for new circles n times.
+int limit = 1000;
+// scale down original image (downsampling)
+int scl=5;
+// list of all possible spots, where a new circle can be placed
 ArrayList<PVector> spots;
 
 PImage img;
@@ -11,7 +15,7 @@ void setup() {
   circles = new ArrayList<Circle>();
   circles.add(new Circle(width,height));
   
-  img = loadImage("smilie.jpg");
+  img = loadImage("img.jpg");
   img.resize(width/scl, height/scl);
   img.loadPixels();
   background(0,0,0);
@@ -39,11 +43,13 @@ void draw() {
         break;
       }
     }
+    // increase size of current circle
     c.grow();
+    // show circle
     c.show();
   }
   
-  
+  // try to add nTotal new circles 
   int counts = 0;
   for(int i=0; i<nTotal; i++){
     Circle newC = newCircle();
@@ -62,7 +68,7 @@ void draw() {
 }
 
     
-
+// add a new circle if its origin isn't already in an other circle
 Circle newCircle(){
   PVector v =spots.get((int)random(spots.size()));
   boolean valid = true;

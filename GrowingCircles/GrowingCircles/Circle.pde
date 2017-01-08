@@ -2,7 +2,7 @@ class Circle{
   float xPos;
   float yPos;
   float radius;
-  color c = color(0,0,(int)random(255));
+  color c = color((int)random(255),(int)random(255),(int)random(255));
   boolean isGrowing;
   
   Circle(float x, float y){
@@ -22,6 +22,8 @@ class Circle{
     ellipse(xPos,yPos,radius*2, radius*2);
   }
   
+  // check if circle is colliding with a canvas edge
+  // if circle collides, stop growing process
   void collision(){
     if(!isGrowing
     || xPos+radius > width 

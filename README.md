@@ -17,4 +17,7 @@ This project is very similar to _Growing Circles_. The canvas will be filled wit
 <img src="https://github.com/Thommynator/ProcessingProjects/blob/master/GrowingCircles/GrowingCircles2/demo.jpg" width="400" />
 </p>
 
-
+### Visualize Downsampled Camera
+This project uses a webcam or any other camera, which is connected to the computer and converts the current captured image into a new visualization. The visualization is a downsampled version of the original image, where each brightness value corresponds to a specific rectangle or ellipse size.
+This could look like this:
+<p><img src="https://github.com/Thommynator/ProcessingProjects/blob/master/VisualizeDownsampledCamera/VisualizeDownsampledCamera/circleMe.jpg" width="400" /></p>

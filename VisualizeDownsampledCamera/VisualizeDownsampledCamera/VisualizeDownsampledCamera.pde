@@ -4,7 +4,7 @@ import processing.video.*;
 boolean useRectangles = false;
 
 // show mini image in top-left corner?
-boolean showThumbnail = true;
+boolean showThumbnail = false;
 
 int cellSize = 10; // width & height of one cell in px
 int cols;
@@ -39,9 +39,9 @@ void draw() {
       fill(b);
       noStroke();
       if (useRectangles) {
-        rect(x*cellSize+cellSize/2, y*cellSize+cellSize/2, s, s);
+        rect(width-x*cellSize-cellSize/2, y*cellSize+cellSize/2, s, s);
       } else {
-        ellipse(x*cellSize+cellSize/2, y*cellSize+cellSize/2, s, s);
+        ellipse(width-x*cellSize-cellSize/2, y*cellSize+cellSize/2, s, s);
       }
     }
   }

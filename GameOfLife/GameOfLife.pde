@@ -10,7 +10,7 @@ int it = 0;
 
 
 void setup() {
-  size(500, 500);
+  size(800, 800);
   background(255);
   rows = height/cellsize;
   cols = width/cellsize;
@@ -53,11 +53,14 @@ void draw() {
       if (cellsAlive.get(convertRowCol2Idx(y, x))) {
         fill(0, 255, 0);
       } else {
-        fill(255, 0, 0);
+        fill(50,50,50);
       }
       rect(x*cellsize, y*cellsize, cellsize, cellsize);
     }
   }
+  
+  //saveFrame("data/cgol-####.jpg");
+  
 }
 
 /**

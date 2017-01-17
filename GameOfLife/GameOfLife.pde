@@ -59,6 +59,7 @@ void draw() {
     }
   }
   
+  if(mousePressed) initializeGrid();
   //saveFrame("data/cgol-####.jpg");
   
 }

@@ -24,4 +24,8 @@ This could look like this:
 
 ### Conway's Game of Life
 This project is an implementation of <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a>. The following gif way created by my project.
-<p><img src="https://github.com/Thommynator/ProcessingProjects/blob/develop/GameOfLife/demo.gif" width="360" /></p>
+<p><img src="https://github.com/Thommynator/ProcessingProjects/blob/develop/GameOfLife/demo.gif" width="400" /></p>
+
+### Particle Swarm
+This project creates alot of different sized and colored particles, which follow the mouse movement on the canvas. An additional random particle movement ensures more diversity. Pressing the left mouse button increases the particle speed.
+<p><img src="https://github.com/Thommynator/ProcessingProjects/blob/develop/ParticleSwarm/demo.jpg" width="400" /></p>

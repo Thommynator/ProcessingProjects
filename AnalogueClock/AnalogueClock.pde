@@ -1,8 +1,7 @@
 Pointer hourP, minuteP, secondP;
 int millis;
 int clockRadius = 300;
-PImage sun;
-PImage moon;
+PImage sun, moon, leftImg, rightImg;
 
 void setup() {
   size(800, 800);
@@ -11,11 +10,14 @@ void setup() {
   hourP = new Pointer(clockRadius-clockRadius*0.5, 5);
   minuteP = new Pointer(clockRadius-clockRadius*0.2, 3);
   secondP = new Pointer(clockRadius-clockRadius*0.05, 1);
-  
+
   // load images for daylight indicator
   sun  = loadImage("data/sun.png");
   moon = loadImage("data/moon.png");
-  
+  leftImg = loadImage("data/left.png");
+  rightImg = loadImage("data/right.png");
+
+
   millis = second()*1000;
 }
 
@@ -25,14 +27,15 @@ void draw() {
   daylightIndicator();
 
   // compute pointer position
-  hourP.angle = map(hour(), 0, 12, 0, 2*PI);
-  minuteP.angle = map(minute(), 0, 60, 0, 2*PI);
+  hourP.angle = map(hour()+minute()/60.0, 0, 12, 0, 2*PI);
+  minuteP.angle = map(minute()+second()/60.0, 0, 60, 0, 2*PI);
   secondP.angle = map((millis+millis())%60000, 0, 60000, 0, 2*PI);
 
   // display all pointer
   hourP.show();
   minuteP.show();
   secondP.show();
+  millis = millis%60000;
 }
 
 void drawClock() {
@@ -59,16 +62,24 @@ void daylightIndicator() {
   int right = width-left;
   line(left, lineHeight, right, lineHeight);
 
-    println(hour()*60+minute()%(12*60));
+
+
+  imageMode(CENTER);
 
   float pos;
   if (hour() < 12) {
+    // sunrise
     pos = map((hour()*60+minute())%(12*60), 0, (12*60), left, right);
+    image(rightImg, pos, lineHeight);
+    // sunset
   } else {
     pos = map((hour()*60+minute())%(12*60), 0, (12*60), right, left);
+    image(leftImg, pos, lineHeight);
   }
-  
+
   image(moon, left-80, lineHeight-30);
   image(sun, right+10, lineHeight-30);
-  ellipse(pos, lineHeight, 15, 15);
+
+  noFill();
+  ellipse(pos, lineHeight, 30, 30);
 }

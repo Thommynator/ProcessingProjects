@@ -13,13 +13,13 @@ class Particle {
     pos = new PVector(x, y);
     v = 0;
     heading = random(0, PI);
-    r = random(2,10);
-    clr = color(random(0,255),random(0,255),random(0,255), 50);
+    r = random(5,15);
+    clr = color(random(20,200), 50);
   }
 
   void show() {
     fill(clr);
-    stroke(0,180);
+    stroke(0,50);
     ellipse(pos.x, pos.y, r*2, r*2);
   }
 

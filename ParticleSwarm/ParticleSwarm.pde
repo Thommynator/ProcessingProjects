@@ -14,6 +14,7 @@ void draw() {
 
   for (Particle p : particles) {
     p.move(mouseX, mouseY);
-    p.show();
+    
+    if(!(mousePressed && (mouseButton == RIGHT))) p.show();
   }
 }

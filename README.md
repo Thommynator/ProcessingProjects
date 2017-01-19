@@ -29,3 +29,7 @@ This project is an implementation of <a href="https://en.wikipedia.org/wiki/Conw
 ### Particle Swarm
 This project creates alot of different sized and colored particles, which follow the mouse movement on the canvas. An additional random particle movement ensures more diversity. Pressing the left mouse button increases the particle speed.
 <p><img src="https://github.com/Thommynator/ProcessingProjects/blob/develop/ParticleSwarm/demo.jpg" width="400" /></p>
+
+### Analogue Clock
+This projects displays a simple analogue clock with daylight indicator.
+<p><img src="https://github.com/Thommynator/ProcessingProjects/blob/develop/AnalogueClock/data/demo.jpg" width="400" /></p>

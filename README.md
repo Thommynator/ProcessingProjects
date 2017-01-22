@@ -20,7 +20,7 @@ This project is very similar to _Growing Circles_. The canvas will be filled wit
 ### Visualize Downsampled Camera
 This project uses a webcam or any other camera, which is connected to the computer and converts the current captured image into a new visualization. The visualization is a downsampled version of the original image, where each brightness value corresponds to a specific rectangle or ellipse size.
 This could look like this:
-<p><img src="https://github.com/Thommynator/ProcessingProjects/blob/master/VisualizeDownsampledCamera/VisualizeDownsampledCamera/circleMe.jpg" width="400" /></p>
+<p><img src="https://github.com/Thommynator/ProcessingProjects/blob/master/VisualizeDownsampledCamera/circleMe.jpg" width="400" /></p>
 
 ### Conway's Game of Life
 This project is an implementation of <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a>. The following gif way created by my project.
@@ -33,3 +33,7 @@ This project creates alot of different sized and colored particles, which follow
 ### Analogue Clock
 This projects displays a simple analogue clock with daylight indicator.
 <p><img src="https://github.com/Thommynator/ProcessingProjects/blob/develop/AnalogueClock/data/demo.jpg" width="400" /></p>
+
+### Pendulum Wave
+Several pendulums with a different length. The length is computed in a way, that leads to a synchronization of all pendulums each "n" periods. In the following gif, you can see a period-time of 10, which means, after 10 periods of the longest pendulum, all pendulums will line up in a straight line again.
+<p><img src="https://github.com/Thommynator/ProcessingProjects/blob/develop/PendulumWave/demo.gif" width="400" /></p>

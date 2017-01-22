@@ -33,3 +33,7 @@ This project creates alot of different sized and colored particles, which follow
 ### Analogue Clock
 This projects displays a simple analogue clock with daylight indicator.
 <p><img src="https://github.com/Thommynator/ProcessingProjects/blob/develop/AnalogueClock/data/demo.jpg" width="400" /></p>
+
+### Pendulum Wave
+Several pendulums with a different length. The length is computed in a way, that leads to a synchronization of all pendulums each "n" periods. In the following gif, you can see a period-time of 10, which means, after 10 periods of the longest pendulum, all pendulums will line up in a straight line again.
+<p><img src="https://github.com/Thommynator/ProcessingProjects/blob/develop/PendulumWave/demo.gif" width="400" /></p>

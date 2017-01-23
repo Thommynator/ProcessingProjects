@@ -6,13 +6,13 @@ class Pendulum {
   float range;
   color c;
 
-  Pendulum(float pendulumLength) {
+  Pendulum(float pendulumLength, float radius) {
     this.l = pendulumLength;
     this.phi = 0;
-    this.r = 12;
+    this.r = radius;
     this.increaseAngle = true;
     this.range = 0.4;
-    c = color(map(pendulumLength, 0, 500, 80,220),150);
+    c = color(map(pendulumLength, 0, 500, 80,240),150);
   }
 
   void show() {

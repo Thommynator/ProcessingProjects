@@ -7,14 +7,15 @@
 PVector origin = new PVector(300, 15);
 ArrayList<Pendulum> pends = new ArrayList<Pendulum>();
 float t = 0;
-int cycleTime = 10; // pendulums are lined up, after this amount of periods
+int cycleTime = 16; // pendulums are lined up, after this amount of periods
 
 void setup() {
   size(600, 600);
   ellipseMode(CENTER);
 
-  for (int i=0; i<15; i++) {
-    pends.add(new Pendulum(computeLength(cycleTime+i, height-(height*0.1))));
+  int nPendulums = 15;
+  for (int i=0; i<nPendulums; i++) {
+    pends.add(new Pendulum(computeLength(cycleTime+i, height-(height*0.1)), map(i,0,nPendulums,18,4)));
   }
 }
 

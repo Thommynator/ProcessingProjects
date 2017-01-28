@@ -10,12 +10,12 @@ void setup() {
   rows = height/cellsize;
   cols = width/cellsize;
   createTarget();
-  snake = new Snake(floor(cellsize*cols/3), floor(cellsize*rows/2), floor(random(0, 4)));
-  snakeAI = new SnakeAI(floor(2*cellsize*cols/3), floor(cellsize*rows/2), floor(random(0, 4)));
+  snake = new Snake(floor(cellsize*cols/4), floor(cellsize*rows/2), floor(random(0, 4)));
+  snakeAI = new SnakeAI(floor(3*cellsize*cols/4), floor(cellsize*rows/2), floor(random(0, 4)));
 }
 
 void draw() {
-  frameRate(10);
+  frameRate(15);
   drawGrid();
 
   snake.updateDirection();
@@ -74,7 +74,7 @@ void restart() {
   snake = null;
   snakeAI = null;
   
-  snake = new Snake(floor(cellsize*cols/3), floor(cellsize*rows/2), floor(random(0, 4)));
-  snakeAI = new SnakeAI(floor(2*cellsize*cols/3), floor(cellsize*rows/2), floor(random(0, 4)));
+  snake = new Snake(floor(cellsize*cols/4), floor(cellsize*rows/2), floor(random(0, 4)));
+  snakeAI = new SnakeAI(floor(3*cellsize*cols/4), floor(cellsize*rows/2), floor(random(0, 4)));
   createTarget();
 }

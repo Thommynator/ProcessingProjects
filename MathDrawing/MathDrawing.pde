@@ -1,5 +1,5 @@
 int t = 0;
-final int N_LINES = 50;
+final int N_LINES = 75;
 void setup() {
   colorMode(HSB);
   size(800, 800);
@@ -7,17 +7,22 @@ void setup() {
 
 void draw() {
   translate(width/2, height/2);
+  
   background(20);
-  strokeWeight(2);
 
   for (int i=0; i<N_LINES; i++) {
-    //point(x1(t), y1(t));
-    int c = int(t+i);
-    stroke(c%255, 100, 230, 100);
+    // hue value for line color
+    int hue = int(t+i);
+    
+    // lines between
+    strokeWeight(1);
+    stroke(hue%255, 200, 230, 100);
     line(x1(t+i), y1(t+i), x2(t+i), y2(t+i));
 
+    // border
     if (i<N_LINES-1) {
-      stroke(c%255, 100, 230, 255);
+      strokeWeight(2);
+      stroke(hue%255, 200, 250, 255);
       line(x1(t+i), y1(t+i), x1(t+i+1), y1(t+i+1));
       line(x2(t+i), y2(t+i), x2(t+i+1), y2(t+i+1));
     }
@@ -26,6 +31,8 @@ void draw() {
   t++;
 }
 
+
+// equations for point movement
 float x1(float t) {
   return sin(t/20)*width/3 + sin(t/14)*20;
 }

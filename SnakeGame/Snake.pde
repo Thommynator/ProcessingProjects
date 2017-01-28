@@ -21,9 +21,9 @@ class Snake {
   }
 
   // visualize snake body
-  void show() {
+  void show(color c) {
     for (PVector e : elements) {
-      fill(100);
+      fill(c);
       rect(e.x, e.y, cellsize, cellsize);
     }
   }

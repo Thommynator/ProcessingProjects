@@ -1,22 +1,26 @@
+/**
+* This class represents a snake, the player or the AI can control on the canvas.
+*/
+
 class Snake {
+  // List of all "body parts" of the snake
   ArrayList<PVector> elements = new ArrayList<PVector>();
 
-  /**
+  /** 
+   * Moving direction of the snake "head"
    * 0: Up
    * 1: Right
    * 2: Down
    * 3: Left
    */
-  ArrayList<Integer> keyStrokes = new ArrayList<Integer>();
-
   int direction;
 
-  Snake(int x, int y) {
+  Snake(int x, int y, int startingDirection) {
     elements.add(new PVector(x, y));
-    keyStrokes.add(1);
-    direction = 1;
+    direction = startingDirection;
   }
 
+  // visualize snake body
   void show() {
     for (PVector e : elements) {
       fill(100);
@@ -24,40 +28,35 @@ class Snake {
     }
   }
 
-  void saveKey() {
+  // update moving direction, using the key input of the player
+  void updateDirection() {
     if (key == CODED) {
       switch(keyCode) {
       case UP:
-        if (keyStrokes.get(keyStrokes.size()-1) != 0 && keyStrokes.get(keyStrokes.size()-1) != 2) {
-          keyStrokes.add(0);
+        if (direction != 2) {
+          direction = 0;
         }
         break;
       case RIGHT:
-        if (keyStrokes.get(keyStrokes.size()-1) != 1 && keyStrokes.get(keyStrokes.size()-1) != 3) {
-          keyStrokes.add(1);
+        if (direction != 3) {
+          direction = 1;
         }
         break;
       case DOWN:
-        if (keyStrokes.get(keyStrokes.size()-1) != 2 && keyStrokes.get(keyStrokes.size()-1) != 0) {
-          keyStrokes.add(2);
+        if (direction != 0) {
+          direction = 2;
         }
         break;
       case LEFT:
-        if (keyStrokes.get(keyStrokes.size()-1) != 3 && keyStrokes.get(keyStrokes.size()-1) != 1) {
-          keyStrokes.add(3);
+        if (direction != 1) {
+          direction = 3;
         }
         break;
       }
     }
   }
 
-  void updateDirection() {
-    if (keyStrokes.get(keyStrokes.size()-1) != direction) {
-      direction = keyStrokes.get(keyStrokes.size()-1);
-      keyStrokes.remove(keyStrokes.size()-1);
-    }
-  }
-
+  // move all body parts from end to head 1 cell further
   void moveElements() {
     if (elements.size()>1) {
       for (int i=elements.size()-1; i>0; i--) {
@@ -67,6 +66,7 @@ class Snake {
     elements.set(0, this.newPos(elements.get(0), this.direction));
   }
 
+  // compute a new position in 4-neighborhood, defined by the direction
   PVector newPos(PVector currentPos, int direction) {
     PVector newPos = elements.get(0);
     switch(direction) {
@@ -86,11 +86,27 @@ class Snake {
     return newPos;
   }
 
+  // add a new body part to the list
   void addElement() {
     elements.add(newPos(elements.get(0), (this.direction+2)%4));
   }
-  
-  boolean isCollided(){
-  return false;
+
+  // check if snaked clollided with wall or itself
+  boolean isCollided() {
+    // collision with wall
+    if (elements.get(0).x > width || elements.get(0).x < 0) {
+      return true;
+    }
+    if (elements.get(0).y > height || elements.get(0).y < 0) {
+      return true;
+    }
+
+    // collision with self
+    for (int i=1; i<elements.size(); i++) {
+      if (elements.get(0).x == elements.get(i).x && elements.get(0).y == elements.get(i).y) {
+        return true;
+      }
+    }
+    return false;
   }
 }

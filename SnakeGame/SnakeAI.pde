@@ -1,7 +1,7 @@
 class SnakeAI extends Snake{
  
-  SnakeAI(int x, int y, int startingDirection){
-   super(x, y, startingDirection);
+  SnakeAI(int x, int y, int startingDirection, color c){
+   super(x, y, startingDirection, c);
   }
   
   void updateDirection(PVector target) {

@@ -14,16 +14,23 @@ class Snake {
    * 3: Left
    */
   int direction;
-
-  Snake(int x, int y, int startingDirection) {
+  
+  // color of the snake body
+  color clr;
+  
+  // the color of the cell, the snake just accessed
+  color accessedCell;
+  
+  Snake(int x, int y, int startingDirection, color c) {
     elements.add(new PVector(x, y));
     direction = startingDirection;
+    clr = c;
   }
 
   // visualize snake body
-  void show(color c) {
+  void show() {
     for (PVector e : elements) {
-      fill(c);
+      fill(this.clr);
       rect(e.x, e.y, cellsize, cellsize);
     }
   }
@@ -64,6 +71,7 @@ class Snake {
       }
     }
     elements.set(0, this.newPos(elements.get(0), this.direction));
+    this.accessedCell = get(floor(elements.get(0).x+cellsize/2), floor(elements.get(0).y + cellsize/2));
   }
 
   // compute a new position in 4-neighborhood, defined by the direction
@@ -101,12 +109,12 @@ class Snake {
       return true;
     }
 
-    // collision with self
-    for (int i=1; i<elements.size(); i++) {
-      if (elements.get(0).x == elements.get(i).x && elements.get(0).y == elements.get(i).y) {
-        return true;
-      }
+    // collision with self or opponent
+    System.out.println(red(accessedCell) + " " + green(accessedCell) + " " + blue(accessedCell));
+      if ((red(accessedCell) == red(background) && green(accessedCell) == green(background)  && blue(accessedCell) == blue(background))
+      || (red(accessedCell) == red(targetColor) && green(accessedCell) == green(targetColor)  && blue(accessedCell) == blue(targetColor))) {
+        return false;
     }
-    return false;
+    return true;
   }
 }

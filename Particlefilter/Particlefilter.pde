@@ -3,7 +3,7 @@ ArrayList<Obstacle> obstacles = new ArrayList();
 
 void setup() {
   size(800, 800);
-  swarm = new Particleswarm(500);
+  swarm = new Particleswarm(200);
   createObstacles(10);
 }
 
@@ -19,17 +19,20 @@ void draw() {
 
 
 void computeWeights() {
+  float weightSum = 0; 
   // observation: measure distance
-  float observation = swarm.getParticle(0).measureDistance();
+  float observation = swarm.getParticle(0).measureDistance(true);
   for (int i=1; i<swarm.nParticles; i++) {
-    float sigma = 10.0;
-    float x = swarm.getParticle(i).measureDistance();
+    float sigma = 100.0;
+    float x = swarm.getParticle(i).measureDistance(false);
     float weight =  1.0/(sigma * sqrt(TWO_PI)) * exp(-0.5*pow((x-observation)/sigma, 2));   
     swarm.weight.set(i, weight);
-
-    //println(-0.5*pow((x-observation)/sigma, 2));
-    println(observation, x, -0.5*pow((x-observation)/sigma, 2), weight);
+    weightSum += weight;
   }
+  for(int i=1; i<swarm.nParticles; i++){
+      swarm.weight.set(i, swarm.weight.get(i)/weightSum);
+  }
+  
 }
 
 void createObstacles(int number) {

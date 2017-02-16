@@ -12,9 +12,9 @@ class Particle {
   }
 
   /**
-  * Measure the distance to the next obstacle or canvas border in heading direction of the particle.
-  */
-  float measureDistance() {
+   * Measure the distance to the next obstacle or canvas border in heading direction of the particle.
+   */
+  float measureDistance(boolean showMeasurement) {
     PVector checkPos = new PVector(this.x, this.y);
     // ray casting, check if ray hits target or canvas border
     while (checkPos.x < width && checkPos.y < height && checkPos.x > 0 && checkPos.y > 0) {
@@ -23,6 +23,12 @@ class Particle {
       if (red(get((int)checkPos.x, (int)checkPos.y)) == 255) {
         break;
       }
+    }
+
+    if (showMeasurement) {
+      strokeWeight(1);
+      stroke(180);
+      line(this.x, this.y, checkPos.x, checkPos.y);
     }
     // compute euclidean distance
     return sqrt(pow(checkPos.x-this.x, 2) + pow(checkPos.y-this.y, 2));

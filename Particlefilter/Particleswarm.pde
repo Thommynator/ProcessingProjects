@@ -39,7 +39,7 @@ class Particleswarm { //<>//
     stroke(20);
 
     // draw all other particles
-    colorMode(HSB);
+    colorMode(RGB);
     for (int i=0; i<nParticles; i++) {
       Particle p = getParticle(i);  
       // ground truth particle
@@ -48,12 +48,11 @@ class Particleswarm { //<>//
         ellipse(p.x, p.y, this.radius+10, this.radius+10);
         line(p.x, p.y, p.x + sin(p.heading) * 8, p.y - cos(p.heading) * 8);
       } else {
-        fill(map(p.weight, 0, 1, 0, 255), 255, 255);
+        fill(0, map(p.weight, 0, 1.0/(this.nParticles-1), 0, 255), 0);
         ellipse(p.x, p.y, this.radius, this.radius);
         line(p.x, p.y, p.x + sin(p.heading) * 8, p.y - cos(p.heading) * 8);
       }
     }
-    colorMode(RGB);
   }
 
 

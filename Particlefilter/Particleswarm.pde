@@ -52,7 +52,7 @@ class Particleswarm { //<>//
 
     // draw all other particles
     colorMode(RGB);
-    for (int i=0; i<nParticles; i++) {
+    for (int i=nParticles-1; i>=0; i--) {
       Particle p = getParticle(i);  
       // ground truth particle
       if (i==0) {
@@ -60,6 +60,7 @@ class Particleswarm { //<>//
         ellipse(p.x, p.y, this.radius+10, this.radius+10);
         line(p.x, p.y, p.x + sin(p.heading) * 8, p.y - cos(p.heading) * 8);
       } else {
+        //println(map(p.weight, 0, 1.0/(this.nParticles), 0, 255));
         fill(0, map(p.weight, 0, 1.0/(this.nParticles-1), 0, 255), 0);
         ellipse(p.x, p.y, this.radius, this.radius);
         line(p.x, p.y, p.x + sin(p.heading) * 8, p.y - cos(p.heading) * 8);
@@ -72,20 +73,44 @@ class Particleswarm { //<>//
     if (keyPressed == true && key == CODED) {
       if (keyCode == UP) {
         for (int i=0; i<nParticles; i++) {
-          this.xPos.set(i, this.xPos.get(i) + sin(this.heading.get(i))*5);
-          this.yPos.set(i, this.yPos.get(i) - cos(this.heading.get(i))*5);
+          if (i==0) {
+            this.xPos.set(i, this.xPos.get(i) + sin(this.heading.get(i))*5);
+            this.yPos.set(i, this.yPos.get(i) - cos(this.heading.get(i))*5);
+          } else {
+            this.xPos.set(i, this.xPos.get(i) + sin(this.heading.get(i))*5 + randomGaussian()*sigmaPos/10);
+            this.yPos.set(i, this.yPos.get(i) - cos(this.heading.get(i))*5 + randomGaussian()*sigmaPos/10);
+          }
+        }
+      }
+
+      if (keyCode == DOWN) {
+        for (int i=0; i<nParticles; i++) {
+          if (i==0) {
+            this.xPos.set(i, this.xPos.get(i) - sin(this.heading.get(i))*5);
+            this.yPos.set(i, this.yPos.get(i) + cos(this.heading.get(i))*5);
+          } else {
+            this.xPos.set(i, this.xPos.get(i) - sin(this.heading.get(i))*5 + randomGaussian()*sigmaPos/10);
+            this.yPos.set(i, this.yPos.get(i) + cos(this.heading.get(i))*5 + randomGaussian()*sigmaPos/10);
+          }
         }
       }
 
       if (keyCode == LEFT) {
         for (int i=0; i<nParticles; i++) {
-          this.heading.set(i, this.heading.get(i) - 0.05);
+          if (i==0) {
+            this.heading.set(i, this.heading.get(i) - 0.1);
+          } else {
+            this.heading.set(i, this.heading.get(i) - 0.1 + randomGaussian()*sigmaHeading);
+          }
         }
       }
       if (keyCode == RIGHT) {
         for (int i=0; i<nParticles; i++) {
-          this.heading.set(i, this.heading.get(i) + 0.05);
-        }
+          if (i==0) {
+            this.heading.set(i, this.heading.get(i) + 0.1);
+          } else {
+            this.heading.set(i, this.heading.get(i) + 0.1 + randomGaussian()*sigmaHeading);
+          }        }
       }
     }
   }

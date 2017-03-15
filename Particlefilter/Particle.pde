@@ -15,7 +15,7 @@ class Particle { //<>//
    * Measure the distance to the next obstacle or canvas border in heading direction of the particle.
    */
   float[] measureDistance(boolean showMeasurement) {
-    float[] dist = new float[5];
+    float[] dist = new float[15];
     for (int i=-dist.length/2; i<=dist.length/2; i++) {
       PVector checkPos = new PVector(this.x/downSampleFactor, this.y/downSampleFactor);
       // ray casting, check if ray hits target or canvas border

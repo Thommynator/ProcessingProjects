@@ -1,4 +1,4 @@
-class Particleswarm { //<>//
+class Particleswarm { //<>// //<>//
 
   int nParticles;
   float radius;
@@ -36,9 +36,14 @@ class Particleswarm { //<>//
   }
 
   void initialize() {
+    xPos = new ArrayList<Float>();  
+    yPos = new ArrayList<Float>();  
+    heading = new ArrayList<Float>();  
+    weights = new ArrayList<Float>();  
+
     // generate random particles
     for (int i=0; i<this.nParticles; i++) {
-      this.xPos.add(random(0, width)); //<>//
+      this.xPos.add(random(0, width));
       this.yPos.add(random(0, height));
       this.heading.add(random(0, TWO_PI));
       this.weights.add(1.0/nParticles);
@@ -50,6 +55,18 @@ class Particleswarm { //<>//
    * All particles except ground-truth will be initialized randomly.
    */
   void reinitialize() {
+    Particle gt = this.getParticle(0);
+    xPos = new ArrayList<Float>();  
+    yPos = new ArrayList<Float>();  
+    heading = new ArrayList<Float>();  
+    weights = new ArrayList<Float>();  
+    
+    // add ground truth
+    this.xPos.add(gt.x);
+    this.yPos.add(gt.y);
+    this.heading.add(gt.heading);
+    this.weights.add(1.0);
+    
     // generate random particles
     for (int i=1; i<this.nParticles; i++) {
       this.xPos.add(random(0, width));

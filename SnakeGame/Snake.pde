@@ -110,7 +110,6 @@ class Snake {
     }
 
     // collision with self or opponent
-    System.out.println(red(accessedCell) + " " + green(accessedCell) + " " + blue(accessedCell));
       if ((red(accessedCell) == red(background) && green(accessedCell) == green(background)  && blue(accessedCell) == blue(background))
       || (red(accessedCell) == red(targetColor) && green(accessedCell) == green(targetColor)  && blue(accessedCell) == blue(targetColor))) {
         return false;

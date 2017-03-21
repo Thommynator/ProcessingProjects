@@ -1,14 +1,16 @@
-/** //<>// //<>//
-* Particlefilter Demo
-* Control: Up, Down, Left, Right
-* Space: Toggle Resampling
-* "p": toggle usePos
-* "i": initialize all particles (including ground truth)
-* "r": reinitialize all particles (except ground truth)
-*/
+/** //<>//
+ * Particlefilter Demo
+ * Control: Up, Down, Left, Right
+ * Space: Toggle Resampling
+ * "p": toggle usePos
+ * "i": initialize all particles (including ground truth)
+ * "r": reinitialize all particles (except ground truth)
+ */
 
 Particleswarm swarm;
-String imageName = "streets.png";
+int nParticles = 000;
+String imageName = "bg1.png";
+//String imageName = "bg2.png";
 
 // uncertainties
 float sigmaDist = 200.0;
@@ -26,7 +28,7 @@ int iteration = 0;
 void setup() {
   size(800, 800);
   background(200);
-  swarm = new Particleswarm(1000);
+  swarm = new Particleswarm(nParticles);
   createObstacles(10);
   drawObstacles();
   save("bg.png");
@@ -37,14 +39,11 @@ void setup() {
 void draw() {
   frameRate(30);
   background(loadImage(imageName));
-  image(downSampledBG, 0, 0);
+  
   swarm.moveParticles();
+  swarm.computeWeights();
 
-  if (iteration % 1 == 0) {
-    swarm.computeWeights();
-  }
-
-  if (useResampling && iteration % 1 == 0) {
+  if (useResampling) {
     swarm = swarm.resample();
   }
 

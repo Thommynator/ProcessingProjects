@@ -1,4 +1,4 @@
-class Particleswarm { //<>// //<>//
+class Particleswarm { //<>//
 
   int nParticles;
   float radius;
@@ -65,7 +65,7 @@ class Particleswarm { //<>// //<>//
     this.xPos.add(gt.x);
     this.yPos.add(gt.y);
     this.heading.add(gt.heading);
-    this.weights.add(1.0);
+    this.weights.add(1.0/nParticles);
     
     // generate random particles
     for (int i=1; i<this.nParticles; i++) {
@@ -77,7 +77,7 @@ class Particleswarm { //<>// //<>//
   }
 
   /**
-   * Draw all aprticles on the canvas.
+   * Draw all particles on the canvas.
    * Weight is color-coded from black (low weight) to green (high weight).
    */
   void drawParticles() {
@@ -114,6 +114,7 @@ class Particleswarm { //<>// //<>//
     int moveSpeed = 15;
     float rotationSpeed = 0.31;
     if (keyPressed == true && key == CODED) {
+      
       if (keyCode == UP) {
         for (int i=0; i<nParticles; i++) {
           if (i==0) {
@@ -147,6 +148,7 @@ class Particleswarm { //<>// //<>//
           }
         }
       }
+      
       if (keyCode == RIGHT) {
         for (int i=0; i<nParticles; i++) {
           if (i==0) {

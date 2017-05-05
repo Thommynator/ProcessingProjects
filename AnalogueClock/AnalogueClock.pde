@@ -1,10 +1,10 @@
 Pointer hourP, minuteP, secondP;
 int millis;
-int clockRadius = 300;
+int clockRadius = 200;
 PImage sun, moon, leftImg, rightImg;
 
 void setup() {
-  size(800, 800);
+  size(600, 600);
   background(220);
 
   hourP = new Pointer(clockRadius-clockRadius*0.5, 5);

@@ -8,7 +8,7 @@ Snake snake;
 SnakeAI snakeAI;
 
 void setup() {
-  size(800, 800);
+  size(800, 600);
   rows = height/cellsize;
   cols = width/cellsize;
   createTarget();

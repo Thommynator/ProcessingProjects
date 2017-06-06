@@ -8,7 +8,7 @@
  */
 
 Particleswarm swarm;
-int nParticles = 000;
+int nParticles = 1000;
 String imageName = "bg1.png";
 //String imageName = "bg2.png";
 

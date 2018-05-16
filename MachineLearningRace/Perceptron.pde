@@ -1,21 +1,21 @@
 class Perceptron {
-  float[] weights;
+  ArrayList<Float> weights;
 
   Perceptron(int amountOfWeights) {
-    weights = new float[amountOfWeights];
+    weights = new ArrayList<Float>(amountOfWeights);
     for (int i=0; i<amountOfWeights; i++) {
-      weights[i] = random(-1, 1);
+      weights.add(random(-1, 1));
     }
   }
 
-  Perceptron(float[] inputWeights) {
+  Perceptron(ArrayList inputWeights) {
     weights = inputWeights;
   }
 
-  float getOutput(float[] inputs) {
+  float getOutput(ArrayList<Float> inputs) {
     float summedWeightedInputs = 0.0;
-    for (int i=0; i<inputs.length; i++) {
-      summedWeightedInputs += weights[i] * inputs[i];
+    for (int i=0; i<inputs.size(); i++) {
+      summedWeightedInputs += weights.get(i) * inputs.get(i);
     }
     return activationFunction(summedWeightedInputs);
   }
@@ -23,5 +23,11 @@ class Perceptron {
   // Sigmoid Function from -1 to +1
   float activationFunction(float x) {
     return 2.0/(1+exp(-x)) - 1;
+  }
+
+  void mutateWeights(float mutationRate) {
+    for (float w : weights) {
+      w += random(-mutationRate*w, mutationRate*w); 
+    }
   }
 }

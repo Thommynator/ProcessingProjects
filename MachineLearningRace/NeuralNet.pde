@@ -1,33 +1,42 @@
 class NeuralNet {
-  float learningRate= 1.0;
-  int startNodes = 5;
+  int startNodes = 8;
   int hiddenNodes= 4;
   int outputNodes = 2;
-  Perceptron[] hiddenPerceptrons= new Perceptron[hiddenNodes];
-  Perceptron[] outputPerceptrons= new Perceptron[outputNodes];
+  ArrayList<Perceptron> hiddenPerceptrons= new ArrayList<Perceptron>(hiddenNodes);
+  ArrayList<Perceptron> outputPerceptrons= new ArrayList<Perceptron>(outputNodes);
 
   NeuralNet() {
     // initialize all hidden perceptrons
-    for (int i=0; i<hiddenPerceptrons.length; i++) {
-      hiddenPerceptrons[i] = new Perceptron(startNodes);
+    for (int i=0; i<hiddenNodes; i++) {
+      hiddenPerceptrons.add(new Perceptron(startNodes));
     }
 
     // initialize all output perceptrons
-    for (int i=0; i<outputPerceptrons.length; i++) {
-      outputPerceptrons[i] = new Perceptron(hiddenNodes);
+    for (int i=0; i<outputNodes; i++) {
+      outputPerceptrons.add(new Perceptron(hiddenNodes));
     }
   }
 
-  float[] returnOutputs(float[] inputs) {
-    float[] hiddenOutputs = new float[hiddenNodes];
-    for (int i=0; i<hiddenPerceptrons.length; i++) {
-      hiddenOutputs[i] = hiddenPerceptrons[i].getOutput(inputs);
+  ArrayList<Float> returnOutputs(ArrayList inputs) {
+    ArrayList<Float> hiddenOutputs = new ArrayList<Float>(hiddenNodes);
+    for (int i=0; i<hiddenNodes; i++) {
+      hiddenOutputs.add(hiddenPerceptrons.get(i).getOutput(inputs));
     }
 
-    float[] outputs = new float[outputNodes];
-    for (int i=0; i<outputPerceptrons.length; i++) {
-      outputs[i] = outputPerceptrons[i].getOutput(hiddenOutputs);
+    ArrayList<Float> outputs = new ArrayList<Float>(outputNodes);
+    for (int i=0; i<outputNodes; i++) {
+      outputs.add(outputPerceptrons.get(i).getOutput(hiddenOutputs));
     }
     return outputs;
+  }
+
+  void mutate(float mutationRate) {
+    for (Perceptron hp : hiddenPerceptrons) {
+      hp.mutateWeights(mutationRate);
+    }
+
+    for (Perceptron op : outputPerceptrons) {
+      op.mutateWeights(mutationRate);
+    }
   }
 }

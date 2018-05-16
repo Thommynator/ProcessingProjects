@@ -1,9 +1,12 @@
-int amountOfCars = 10;
+int amountOfCars = 30;
 int iteration = 1;
 Population population;
 ArrayList<PVector> trackCoordinates;
 int[] backgroundPixels;
 color streetColor = color(20);
+
+int ttl = 300; // time-to-tive: amount of loops per iteration
+int ttlCounter = 0;
 
 void setup() {
   size(800, 800);
@@ -18,14 +21,16 @@ void draw() {
   text("Iteration: "+iteration, 10, height-10); 
   drawTrack();
 
-  population.update(); //<>//
+  population.update();
   population.show();
 
-  if (!population.isAlive()) {
-    population = new Population(amountOfCars);
+  if (!population.isAlive() || ttlCounter > ttl) {
+    population.nextGeneration();
     //createTrack(10);
     iteration++;
+    ttlCounter = 0;
   }
+  ttlCounter++;
 }
 
 void createTrack(int points) {

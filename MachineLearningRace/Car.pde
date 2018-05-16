@@ -3,10 +3,14 @@ class Car {
   PVector pos;
   float heading;
   float vel;
-  float[] distances;
+  
+  int nSensors;
+  ArrayList<Float> distances;
 
   float drivenDistance;
   boolean isAlive;
+  
+  float fitness;
 
   NeuralNet neuralNet;
 
@@ -15,7 +19,8 @@ class Car {
     this.pos = pos;
     this.heading = random(PI/2);
     this.vel = max(1, random(5));
-    this.distances = new float[]{0.0, 0.0, 0.0, 0.0, 0.0};
+    this.nSensors = 7; // adapt network accordingly, 1 input node per (distance) sensor + vel
+    this.distances = new ArrayList<Float>(nSensors);
     this.drivenDistance = 0.0;
     this.isAlive = true;
 
@@ -31,11 +36,14 @@ class Car {
   }
 
   void measureDistances() {
-    this.distances[0] = rayDistance(this.heading-radians(20));
-    this.distances[1] = rayDistance(this.heading-radians(10));
-    this.distances[2] = rayDistance(this.heading);
-    this.distances[3] = rayDistance(this.heading+radians(10));
-    this.distances[4] = rayDistance(this.heading+radians(20));
+    this.distances = new ArrayList<Float>(nSensors);
+    this.distances.add(rayDistance(this.heading-radians(60)));
+    this.distances.add(rayDistance(this.heading-radians(40)));
+    this.distances.add(rayDistance(this.heading-radians(20)));
+    this.distances.add(rayDistance(this.heading));
+    this.distances.add(rayDistance(this.heading+radians(20)));
+    this.distances.add(rayDistance(this.heading+radians(40)));
+    this.distances.add(rayDistance(this.heading+radians(60)));
   }
 
   float rayDistance(float angle) {
@@ -56,13 +64,17 @@ class Car {
     return map(dist(this.pos.x, this.pos.y, x, y), 0, maxDist, 0, 1);
   }
 
+  // adapt the amount of input nodes of the NeuralNet accordingly: distances.size() + 1 (vel)
   void adaptControls() {
-    float[] control = this.neuralNet.returnOutputs(distances);
-    println("vel change", control[0]);
-    println("heading change", control[1]);
+    ArrayList<Float> inputs = distances;
+    inputs.add(vel);
+    
+    ArrayList<Float> control = this.neuralNet.returnOutputs(distances);
+    //println("vel change", control[0]);
+    //println("heading change", control[1]);
 
-    this.vel += control[0];
-    this.heading += control[1];
+    this.vel += control.get(0);
+    this.heading += control.get(1);
   }
 
   void updatePosition() {
@@ -79,9 +91,10 @@ class Car {
   }
 
   float getFitness() {
-    return this.pos.x;
+    this.fitness = dist(this.pos.x, this.pos.y, 0, 0);
+    return this.fitness;
   }
-
+  
   void show() {
     rectMode(CENTER);
     fill(this.clr);

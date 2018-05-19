@@ -5,8 +5,9 @@ ArrayList<PVector> trackCoordinates;
 int[] backgroundPixels;
 color streetColor = color(20);
 
-int ttl = 300; // time-to-tive: amount of loops per iteration
+int ttl = 1000; // time-to-live: amount of loops per iteration
 int ttlCounter = 0;
+int skipedFrames = 1;
 
 void setup() {
   size(800, 800);
@@ -18,19 +19,24 @@ void draw() {
   background(200);
   textSize(20);
   fill(0);
-  text("Iteration: "+iteration, 10, height-10); 
+  text("Iteration: " + iteration, 10, height-10); 
+  text("Speed: " + skipedFrames + "x", 150, height-10); 
   drawTrack();
 
-  population.update();
   population.show();
+  population.getBestCar().neuralNet.show();
 
-  if (!population.isAlive() || ttlCounter > ttl) {
-    population.nextGeneration();
-    //createTrack(10);
-    iteration++;
-    ttlCounter = 0;
+  for (int skip = 0; skip < skipedFrames; skip++) {
+    population.update();
+
+    if (!population.isAlive() || ttlCounter > ttl) {
+      population.nextGeneration();
+      iteration++;
+      ttlCounter = 0;
+      break;
+    }
+    ttlCounter++;
   }
-  ttlCounter++;
 }
 
 void createTrack(int points) {
@@ -63,4 +69,17 @@ void drawTrack() {
   endShape();
   strokeWeight(1);
   backgroundPixels = get().pixels;
+}
+
+void keyPressed() {
+  if (key == ' ') {
+    createTrack(10);
+  } else if (key == '+') {
+    skipedFrames++;
+  } else if (key == '-') {
+    if (skipedFrames == 0) {
+      return;
+    }
+    skipedFrames--;
+  }
 }

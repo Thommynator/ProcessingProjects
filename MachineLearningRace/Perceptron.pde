@@ -2,14 +2,17 @@ class Perceptron {
   ArrayList<Float> weights;
 
   Perceptron(int amountOfWeights) {
-    weights = new ArrayList<Float>(amountOfWeights);
+    this.weights = new ArrayList<Float>(amountOfWeights);
     for (int i=0; i<amountOfWeights; i++) {
       weights.add(random(-1, 1));
     }
   }
 
-  Perceptron(ArrayList inputWeights) {
-    weights = inputWeights;
+  Perceptron(ArrayList<Float> inputWeights) {
+    this.weights = new ArrayList<Float>(inputWeights.size());
+    for (float w : inputWeights) {
+      this.weights.add(w);
+    }
   }
 
   float getOutput(ArrayList<Float> inputs) {
@@ -26,8 +29,10 @@ class Perceptron {
   }
 
   void mutateWeights(float mutationRate) {
-    for (float w : weights) {
-      w += random(-mutationRate*w, mutationRate*w); 
+    for (int i=0; i<weights.size(); i++) {
+      float w = weights.get(i);
+      float noise = random(-mutationRate, mutationRate);
+      weights.set(i, constrain(w + noise, -1, 1));
     }
   }
 }

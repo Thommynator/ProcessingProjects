@@ -4,21 +4,21 @@ class Population { //<>// //<>//
   Population(int amountOfCars) {
     cars = new ArrayList<Car>();
     for (int i=0; i<amountOfCars; i++) {
-      cars.add(new Car(new PVector(30, 30)));
+      cars.add(new Car(new PVector(10, 10)));
     }
   }
 
   // Resampling Wheel
   void nextGeneration() {
     ArrayList<Car> children = new ArrayList<Car>();
-    
+
     // make sure, that the best car is for sure in the new population
     Car bestCar = getBestCar();
-    
+
     Car child = generateChild(bestCar);
     child.clr = color(0, 255, 0);
     children.add(child);
-    
+
     float maxScore = bestCar.getFitness();
     float beta = 0.0;
     int index = floor(random(amountOfCars));
@@ -34,13 +34,13 @@ class Population { //<>// //<>//
   }
 
   Car generateChild(Car parent) {
-    Car child = new Car(new PVector(30, 30));
+    Car child = new Car(new PVector(10, 10));
     child.neuralNet = new NeuralNet(parent.neuralNet);
     return child;
   }
 
   Car mutateChild(Car child) {
-    child.neuralNet.mutate(random(0.5));
+    child.neuralNet.mutate(random(0.2));
     return child;
   }
 
@@ -77,7 +77,7 @@ class Population { //<>// //<>//
     for (int c = cars.size()-1; c >= 0; c--) {
       cars.get(c).show();
     }
-    
+
     // highlight best car
     this.getBestCar().show(true);
   }

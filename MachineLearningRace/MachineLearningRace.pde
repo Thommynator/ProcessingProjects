@@ -1,4 +1,4 @@
-int amountOfCars = 30;
+int amountOfCars = 100;
 int iteration = 1;
 Population population;
 ArrayList<PVector> trackCoordinates;

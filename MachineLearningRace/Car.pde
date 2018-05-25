@@ -9,6 +9,7 @@ class Car {
 
   float drivenDistance;
   boolean isAlive;
+  boolean showRays;
 
   float fitness;
 
@@ -17,14 +18,16 @@ class Car {
   Car(PVector pos) {
     this.clr = color(240, 240, 255);
     this.pos = pos;
-    this.heading = random(PI/2);
+    this.heading = PI/2;
     this.vel = max(1, random(5));
-    this.nSensors = 9; 
+    this.nSensors = 3; 
     this.distances = new ArrayList<Float>(nSensors);
     this.drivenDistance = 0.0;
     this.isAlive = true;
+    this.showRays = false;
 
-    this.neuralNet = new NeuralNet(nSensors, 6, 2);
+    int hiddenNodes = 4;
+    this.neuralNet = new NeuralNet(nSensors + 2, hiddenNodes, 2);
   }
 
   void updateState() {
@@ -55,7 +58,11 @@ class Car {
     }
   }
 
-  float rayDistance(float angle) {
+  float rayDistance(float angle){
+    return this.rayDistance(angle, this.showRays);
+  }
+
+  float rayDistance(float angle, boolean showRays) {
     float x = this.pos.x; 
     float y = this.pos.y; 
     while (isInsideCanvas(x, y)) {
@@ -65,11 +72,14 @@ class Car {
       x += cos(angle)*2; 
       y += sin(angle)*2;
     }
-    fill(255, 255, 255, 100); 
-    ellipse(x, y, 5, 5); 
-    strokeWeight(1); 
-    stroke(255, 255, 255, 100); 
-    line(this.pos.x, this.pos.y, x, y); 
+
+    if (showRays) {
+      fill(255, 255, 255, 100); 
+      ellipse(x, y, 5, 5); 
+      strokeWeight(1); 
+      stroke(255, 255, 255, 100); 
+      line(this.pos.x, this.pos.y, x, y);
+    }
     return dist(this.pos.x, this.pos.y, x, y);
   }
 
@@ -84,7 +94,8 @@ class Car {
   // adapt the amount of input nodes of the NeuralNet accordingly: distances.size() + 1 (vel)
   void adaptControls() {
     ArrayList<Float> inputs = distances; 
-    //inputs.add(vel);
+    inputs.add(map(this.vel, 0, 50, 0, 1));
+    inputs.add(map(this.heading, -PI, PI, -1, 1));
 
     ArrayList<Float> control = this.neuralNet.returnOutputs(inputs); 
     //println("vel change", control.get(0));
@@ -119,7 +130,10 @@ class Car {
     rectMode(CENTER); 
     if (highlight) {
       fill(color(255, 255, 0));
-    } else {
+    } else if(!this.isAlive){
+      fill(this.clr, 50);
+    }
+    else {
       fill(this.clr);
     }
     stroke(0); 

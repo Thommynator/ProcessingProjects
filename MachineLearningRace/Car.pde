@@ -20,14 +20,14 @@ class Car {
     this.pos = pos;
     this.heading = PI/2;
     this.vel = max(1, random(5));
-    this.nSensors = 3; 
+    this.nSensors = 9; 
     this.distances = new ArrayList<Float>(nSensors);
     this.drivenDistance = 0.0;
     this.isAlive = true;
     this.showRays = false;
 
-    int hiddenNodes = 4;
-    this.neuralNet = new NeuralNet(nSensors + 2, hiddenNodes, 2);
+    int hiddenNodes = 6;
+    this.neuralNet = new NeuralNet(nSensors, hiddenNodes, 2);
   }
 
   void updateState() {
@@ -94,13 +94,7 @@ class Car {
   // adapt the amount of input nodes of the NeuralNet accordingly: distances.size() + 1 (vel)
   void adaptControls() {
     ArrayList<Float> inputs = distances; 
-    inputs.add(map(this.vel, 0, 50, 0, 1));
-    inputs.add(map(this.heading, -PI, PI, -1, 1));
-
     ArrayList<Float> control = this.neuralNet.returnOutputs(inputs); 
-    //println("vel change", control.get(0));
-    //println("heading change", control.get(1));
-
     this.vel += control.get(0); 
     this.heading += control.get(1);
   }

@@ -66,6 +66,12 @@ class Population { //<>// //<>//
     }
     return false;
   }
+  
+  void overrideAllWithBest(){
+    for(Car car : this.cars){
+      car.neuralNet = new NeuralNet(this.getBestCar().neuralNet);
+    }
+  }
 
   void update() {
     for (Car car : cars) {

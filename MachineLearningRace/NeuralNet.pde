@@ -39,7 +39,7 @@ class NeuralNet {
     for (Perceptron p : other.hiddenPerceptrons) {
       this.hiddenPerceptrons.add(new Perceptron(p.weights));
     }
-    
+
     for (Perceptron p : other.outputPerceptrons) {
       this.outputPerceptrons.add(new Perceptron(p.weights));
     }
@@ -88,17 +88,31 @@ class NeuralNet {
 
       // hidden nodes
       for (int j=0; j < hiddenNodes; j++) {
-        float w = map(outputPerceptrons.get(i).weights.get(j), -1, 1, 0, 5);
-        stroke(0, 128);
-        strokeWeight(w);
+        float weight = outputPerceptrons.get(i).weights.get(j);
+        float s = map(abs(weight), 0, 1, 1, 8);
+        if (weight < 0) {
+          stroke(255, 0, 0, 128);
+        } else if (weight > 0) {
+          stroke(0, 0, 255, 128);
+        } else {
+          stroke(0, 128);
+        }
+        strokeWeight(s);
         line(x, y, topRightX - hSpace, topRightY + j*vSpace);
         ellipse(topRightX - hSpace, topRightY + j*vSpace, 10, 10);
 
         // input nodes
         for (int k=0; k < inputNodes; k++) {
-          w = map(hiddenPerceptrons.get(j).weights.get(k), -1, 1, 0, 5);
-          stroke(0, 128);
-          strokeWeight(w);
+          weight = outputPerceptrons.get(i).weights.get(j);
+          s = map(abs(weight), 0, 1, 1, 8);
+          if (weight < 0) {
+            stroke(255, 0, 0, 128);
+          } else if (weight > 0) {
+            stroke(0, 0, 255, 128);
+          } else {
+            stroke(0, 128);
+          }
+          strokeWeight(s);
           line(topRightX - hSpace, topRightY + j*vSpace, topRightX - 2*hSpace, topRightY + k*vSpace);
           ellipse(topRightX - 2*hSpace, topRightY + k*vSpace, 10, 10);
         }

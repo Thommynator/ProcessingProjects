@@ -1,4 +1,4 @@
-int amountOfCars = 100;
+int amountOfCars = 200;
 int iteration = 1;
 Population population;
 ArrayList<PVector> trackCoordinates;
@@ -81,5 +81,8 @@ void keyPressed() {
       return;
     }
     skipedFrames--;
+  } else if (key == 'o'){
+    population.overrideAllWithBest();
   }
+  
 }

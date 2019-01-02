@@ -68,3 +68,7 @@ Do you know the old game "snake", where you have to collect some targets with a 
 This projet implements a basic <a href="https://en.wikipedia.org/wiki/Particle_filter">particle filter</a>. It's like one of these "kidnapped robot" scenarios, where you take a robot and put it anywhere in a room (or whatever) and the robot has to find out, where it is. For this it uses only a map, some distance measurements and logging of it's heading changes. The position isn't used/measured, but the filter can estimate the position of the robot.
 <p><img src="https://github.com/Thommynator/ProcessingProjects/blob/master/Particlefilter/demo1.JPG" width="400" />
 <img src="https://github.com/Thommynator/ProcessingProjects/blob/master/Particlefilter/demo2.JPG" width="400" /></p>
+
+### Fourier Series
+This projects visualizes a Fourier Series, which approaches a square wave.
+[Demo Video](https://github.com/Thommynator/ProcessingProjects/blob/master/FourierSeries/demo.mp4)

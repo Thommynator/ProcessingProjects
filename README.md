@@ -14,6 +14,7 @@ Feel free to use/change the code or create a pull request for some projects. Hav
 - <a href="#mathDrawing">Math Drawing</a>
 - <a href="#snakeGame">Snake Game</a>
 - <a href="#particlefilter">Particle Filter</a>
+- <a href="#fourierSeries">Fourier Series</a>
 - to be continued ...
 
 ## Projects
@@ -71,4 +72,6 @@ This projet implements a basic <a href="https://en.wikipedia.org/wiki/Particle_f
 
 ### Fourier Series
 This projects visualizes a Fourier Series, which approaches a square wave.
+<p><img src="https://raw.githubusercontent.com/Thommynator/ProcessingProjects/master/FourierSeries/demo.png" /></p>
+
 [Demo Video](https://github.com/Thommynator/ProcessingProjects/blob/master/FourierSeries/demo.mp4)

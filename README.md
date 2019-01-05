@@ -42,10 +42,7 @@ Do you know the old game "snake", where you have to collect some targets with a 
 
 ### Math Drawing <a href="#toc">[↑]</a> <a name="mathDrawing"></a>
 The coordinates of two points were defined by 4 different equations. Connecting these points results in interesting figures:
-<p><img src="https://github.com/Thommynator/ProcessingProjects/blob/master/Java/MathDrawing/demo1.JPG" width="400" />
-<img src="https://github.com/Thommynator/ProcessingProjects/blob/master/Java/MathDrawing/demo2.JPG" width="400" /></p>
-<p><img src="https://github.com/Thommynator/ProcessingProjects/blob/master/Java/MathDrawing/demo3.JPG" width="400" />
-<img src="https://github.com/Thommynator/ProcessingProjects/blob/master/Java/MathDrawing/demo4.JPG" width="400" /></p>
+<p><img src="https://github.com/Thommynator/ProcessingProjects/blob/master/Java/MathDrawing/demo.gif" width="400" /></p>
 
 ### Pendulum Wave <a href="#toc">[↑]</a> <a name="pendulumWave"></a>
 Several pendulums with a different length. The length is computed in a way, that leads to a synchronization of all pendulums each "n" periods. In the following gif, you can see a period-time of 10, which means, after 10 periods of the longest pendulum, all pendulums will line up in a straight line again.

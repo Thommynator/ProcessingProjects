@@ -4,13 +4,13 @@
  * be synched again. 
  */
 
-PVector origin = new PVector(300, 15);
+PVector origin = new PVector(640, 15);
 ArrayList<Pendulum> pends = new ArrayList<Pendulum>();
 float t = 0;
 int cycleTime = 16; // pendulums are lined up, after this amount of periods
 
 void setup() {
-  size(600, 600);
+  size(1280, 720);
   ellipseMode(CENTER);
 
   int nPendulums = 15;

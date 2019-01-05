@@ -26,9 +26,7 @@ This projects loads 2D grayscale hightmaps and converts them into a 3D represent
 
 ### Fourier Series <a href="#toc">[↑]</a> <a name="fourierSeries"></a>
 This projects visualizes a Fourier Series, which approaches a square wave.
-<p><img src="https://raw.githubusercontent.com/Thommynator/ProcessingProjects/master/FourierSeries/demo.png" /></p>
-
-[Demo Video](https://github.com/Thommynator/ProcessingProjects/blob/master/Java/FourierSeries/demo.mp4)
+<p><img src="https://github.com/Thommynator/ProcessingProjects/blob/master/Java/FourierSeries/demo.gif" /></p>
 
 ### Particle Filter <a href="#toc">[↑]</a> <a name="particlefilter"></a>
 This projet implements a basic <a href="https://en.wikipedia.org/wiki/Particle_filter">particle filter</a>. It's like one of these "kidnapped robot" scenarios, where you take a robot and put it anywhere in a room (or whatever) and the robot has to find out, where it is. For this it uses only a map, some distance measurements and logging of it's heading changes. The position isn't used/measured, but the filter can estimate the position of the robot.

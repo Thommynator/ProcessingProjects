@@ -2,7 +2,7 @@ int t = 0;
 final int N_LINES = 75;
 void setup() {
   colorMode(HSB);
-  size(500, 500);
+  size(1280, 720);
 }
 
 void draw() {

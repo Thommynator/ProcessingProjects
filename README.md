@@ -21,7 +21,8 @@ Feel free to use/change the code or create a pull request for some projects. Hav
 ## Projects
 ### Elevation Visualization <a href="#toc">[↑]</a> <a name="elevationViz"></a>
 This projects loads 2D grayscale hightmaps and converts them into a 3D representation. You can easily add new images (_just search for hightmaps on the internet_) or use the [terrain.party](https://terrain.party/) website to specify an area of your choice on the world surface and download the hightmap.
-![demo gif](https://github.com/Thommynator/ProcessingProjects/blob/master/Java/ElevationViz/demo_grandcanyon.gif)
+
+<img src="https://github.com/Thommynator/ProcessingProjects/blob/master/Java/ElevationViz/demo_grandcanyon.gif" />
 
 ### Fourier Series <a href="#toc">[↑]</a> <a name="fourierSeries"></a>
 This projects visualizes a Fourier Series, which approaches a square wave.

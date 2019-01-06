@@ -1,25 +1,29 @@
 float nInitialCellsProb = 0.4;
 
-int cellsize = 10;
+int cellsize = 20;
 int rows;
 int cols;
 ArrayList<Boolean> cellsAlive;
 ArrayList<Boolean> newGeneration;
+float rotationAngle = 0;
+int rotationDirection = 1;
 
 int it = 0;
 
 
 void setup() {
-  size(800, 800);
-  background(255);
-  rows = height/cellsize;
+  size(1280, 720, P3D);
+  frameRate(15);
+  rows = 2*height/cellsize;
   cols = width/cellsize;
   initializeGrid();
 }
 
 void draw() {
-  frameRate(20);
-  // rules
+  background(50);
+  lights();
+
+  // game rules
   for (int y=0; y<rows; y++) {
     for (int x=0; x<cols; x++) {
       int n = countLivingNeighbors(y, x);
@@ -47,21 +51,42 @@ void draw() {
     }
   }
 
+  // draw 
+  translate(width/2, 0, -height/2);
+  rotateY(rotationAngle);
+  translate(-width/2, 0, height/2);
+
+
+  translate(0, 3*height/4, 0);
+  rotateX(-PI/4);
+
   cellsAlive = (ArrayList<Boolean>)newGeneration.clone();
   for (int y=0; y<rows; y++) {
     for (int x=0; x<cols; x++) {
+      pushMatrix();
+      translate(x*cellsize, 0, -y*cellsize);
       if (cellsAlive.get(convertRowCol2Idx(y, x))) {
+        translate(0, -cellsize/2, 0);
         fill(0, 255, 0);
       } else {
-        fill(50,50,50);
+        fill(50, 50, 50);
       }
-      rect(x*cellsize, y*cellsize, cellsize, cellsize);
+
+      box(cellsize);
+      popMatrix();
     }
   }
-  
-  if(mousePressed) initializeGrid();
-  //saveFrame("data/cgol-####.jpg");
-  
+
+  float maxRange = 0.8;
+  if (rotationAngle > maxRange || rotationAngle < -maxRange) {
+    rotationDirection *= -1;
+  }
+  rotationAngle += rotationDirection * 0.005;
+
+
+  if (mousePressed) {
+    initializeGrid();
+  }
 }
 
 /**

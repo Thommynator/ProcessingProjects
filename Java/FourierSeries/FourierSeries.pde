@@ -5,7 +5,7 @@ int nSeries = 3;
 int speed = 3;
 
 void setup() {
-  size(2400, 1200);
+  size(1280, 720);
   background(60);
 }
 
@@ -17,7 +17,7 @@ void draw() {
 
   translate(width/4, height/2);
 
-  int len = 300;
+  int len = 150;
   Rotor rotor = new Rotor(new PVector(0.0, 0.0), len, angle, 1);
   rotor.show(true);
 
@@ -27,7 +27,7 @@ void draw() {
   }
 
   stroke(200, 100);
-  line(rotor.getX(), rotor.getY(), 600, rotor.getY());
+  line(rotor.getX(), rotor.getY(), 400, rotor.getY());
   addToList(rotor.getX(), rotor.getY());
   drawPoints();
   angle += speed / 100.0;
@@ -48,7 +48,7 @@ void drawPoints() {
   beginShape();
   for (int i=0; i<points.size(); i++) {
     PVector vec = points.get(i);
-    vertex(600+i, vec.y);
+    vertex(400+i, vec.y);
   }
   endShape();
 }

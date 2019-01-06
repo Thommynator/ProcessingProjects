@@ -26,6 +26,7 @@ This projects loads 2D grayscale hightmaps and converts them into a 3D represent
 
 ### Fourier Series <a href="#toc">[↑]</a> <a name="fourierSeries"></a>
 This projects visualizes a Fourier Series, which approaches a square wave.
+You can change the amount of "_bars_" and the speed with your arrow keys.
 <p><img src="https://github.com/Thommynator/ProcessingProjects/blob/master/Java/FourierSeries/demo.gif" /></p>
 
 ### Particle Filter <a href="#toc">[↑]</a> <a name="particlefilter"></a>
@@ -55,7 +56,8 @@ This project creates alot of different sized and colored particles, which follow
 <p><img src="https://github.com/Thommynator/ProcessingProjects/blob/master/Java/ParticleSwarm/demo.jpg" width="400" /></p>
 
 ### Conway's Game of Life <a href="#toc">[↑]</a> <a name="gameOfLife"></a>
-This project is an implementation of <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a>. The following gif way created by my project.
+This project is an implementation of <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a>. 
+A click on the canvas resets the game of life.
 <p><img src="https://github.com/Thommynator/ProcessingProjects/blob/master/Java/GameOfLife/demo.gif" width="400" /></p>
 
 ### Visualize Downsampled Camera <a href="#toc">[↑]</a> <a name="visDownCam"></a>
